@@ -132,16 +132,16 @@ BACKUP_FILE="${BACKUP_DIR}/${ORIGIN_DATABASE}_${TODAY}.sql"
 
 # backup db
 export PGPASSWORD=$ORIGIN_PASSWORD
-cecho "start backup"
+pok "start backup"
 pg_dump -h $ORIGIN_HOSTNAME -p $ORIGIN_PORT -U $ORIGIN_USERNAME -F c -b -v -f $BACKUP_FILE $ORIGIN_DATABASE
-cecho "backup ended"
+pok "backup ended"
 
 # previous snapshot
 BACKUP_FILE_SNAPSHOT="${BACKUP_DIR}/${DESTINY_DATABASE}_${TODAY}.sql"
 export PGPASSWORD=$DESTINY_PASSWORD
-cecho "backup snapshot"
+pok "backup snapshot"
 pg_dump -h $DESTINY_HOSTNAME -p $DESTINY_PORT -U $DESTINY_USERNAME -F c -b -v -f $BACKUP_FILE_SNAPSHOT $DESTINY_DATABASE
-cecho "backup ended"
+pok "backup ended"
 
 # clean destiny database
 psql -h $DESTINY_HOST -p $DESTINY_PORT -U $DESTINY_USER postgres -c "DROP DATABASE $DESTINY_NAME;"
