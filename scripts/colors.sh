@@ -38,3 +38,21 @@ pwarn() {
 pok () {
   cecho "GREEN" "SUCCESS!: ${1}"
 }
+
+# verify if env file exist
+ENV="${0%/*}/../.env"
+if [ ! -f "$ENV" ]; then
+  perrors "there is no valid .env file"
+fi
+# verify vars
+while IFS= read -r line
+do
+  echo $line
+  if [[ "$line" == *= ]]; then
+    perrors "variable ${line} is empty"
+  fi
+done < <(cat $ENV)
+
+
+# call the env file
+export $(egrep -v '^#' $ENV | xargs)
