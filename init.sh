@@ -30,7 +30,7 @@ echo "
 "
 
 T=$(date +"%F")
-LOGFILE="${0%/*}/../logs/${T}.log"
+LOGFILE="${0%/*}/logs/${T}.log"
 touch "$LOGFILE"
 
 cecho() {
@@ -70,7 +70,7 @@ pok () {
 }
 
 # verify if env file exist
-ENV="${0%/*}/../.env"
+ENV="${0%/*}/.env"
 if [ ! -f "$ENV" ]; then
   perrors "there is no valid .env file"
 fi
@@ -124,7 +124,7 @@ echo '
 
 
 TODAY=$(date +%F)
-BACKUP_DIR="${0%/*}/../backups"
+BACKUP_DIR="${0%/*}/backups"
 if [ ! -d "$BACKUP_DIR" ]; then
   mkdir -p $BACKUP_DIR
 fi
