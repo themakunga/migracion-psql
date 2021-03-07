@@ -3,16 +3,15 @@
 . ${0%/*}/colors.sh
 
 # verify if dump postgres is installed
-if ! command -v pg_restore &> /dev/null
+if ! hash pg_restore 2>/dev/null
 then
     perrors "pg_restore could not be found"
     exit 2
 fi
 
 # verify if dump postgres is installed
-if ! command -v psql &> /dev/null
-then
-    perrors "psql could not be found"
+if ! hash pg_dump 2>/dev/null; then
+    perrors "pg_dump could not be found"
     exit 2
 fi
 

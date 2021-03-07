@@ -18,8 +18,7 @@ echo '
 
 
 # verify if dump postgres is installed
-if ! command -v pg_dump &> /dev/null
-then
+if ! hash pg_dump 2>/dev/null; then
     perrors "pg_dump could not be found"
     exit 2
 fi

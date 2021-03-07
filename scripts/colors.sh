@@ -45,13 +45,13 @@ if [ ! -f "$ENV" ]; then
   perrors "there is no valid .env file"
 fi
 # verify vars
-while IFS= read -r line
-do
-  echo $line
-  if [[ "$line" == *= ]]; then
-    perrors "variable ${line} is empty"
-  fi
-done < <(cat $ENV)
+# while IFS= read -r line
+# do
+#   echo $line
+#   if [[ "$line" == "*=" ]]; then
+#     perrors "variable ${line} is empty"
+#   fi
+# done < $ENV
 
 
 # call the env file
